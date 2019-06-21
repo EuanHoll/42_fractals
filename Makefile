@@ -23,7 +23,7 @@ LIBFT = -I libft/includes -L libft -lft
 FLAGS = -Wall -Werror -Wextra
 
 ifeq ($(shell uname -s ), Linux)
-MINILIBX = -pthread -I minilibxLINUX -L minilibxLINUX -lmlx -lXext -lX11 
+MINILIBX = -pthread -I minilibxLINUX -L minilibxLINUX -lmlx -lXext -lX11 -lm
 MINILOC = minilibxLINUX
 endif
 
@@ -42,8 +42,8 @@ $(NAME): $(SRCF)
 	@make -C libft/
 	@make -C $(MINILOC)/
 	@echo "$(COLOURMAKE)Compiling Program$(COLOURRESET)"
-	@clang $(FLAGS) -I $(MINILOC) -I libft/includes -c $(SRCF) -g
-	@clang -o $(NAME) $(OBJ) $(LIBFT) $(MINILIBX) -g
+	@clang $(FLAGS) -I $(MINILOC) -I libft/includes -c $(SRCF)
+	@clang -o $(NAME) $(OBJ) $(LIBFT) $(MINILIBX)
 
 clean:
 	@echo "$(COLOURCLEAN)Cleaning Libaries$(COLOURRESET)"

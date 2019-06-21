@@ -28,7 +28,7 @@ all: $(NAME)
 
 $(NAME):
 	@echo "Compiling $(NAME)"
-	@gcc -Wall -Werror -Wextra -c $(SRCF) -g -I ./includes
+	@gcc -Wall -Werror -Wextra -c $(SRCF) -I ./includes
 	@ar -rcsv $(NAME) $(OBJ)
 	@echo "Compilied $(NAME)"
 
