@@ -69,11 +69,11 @@ static int	mousezoom(int button, int x, int y, void *param)
 
 void		hookcontrols(t_mlx *mlx)
 {
-	mlx_hook(mlx->win, KEY_PRESS_EVENT, 1L << KEY_PRESS_EVENT,
+	mlx_hook(mlx->win, KEY_PRESS_EVENT, 3,
 			keycontroller, (void*)mlx);
-	mlx_hook(mlx->win, MOUSE_MOVE_EVENT, 1L << MOUSE_MOVE_EVENT,
+	mlx_hook(mlx->win, MOUSE_MOVE_EVENT, 64,
 			mousemove, (void*)mlx);
 	mlx_hook(mlx->win, CLOSE_EVENT, 1L << CLOSE_EVENT, end, NULL);
-	mlx_hook(mlx->win, MOUSE_PRESSED_EVENT, 1L << MOUSE_PRESSED_EVENT,
+	mlx_hook(mlx->win, MOUSE_PRESSED_EVENT, 4,
 			mousezoom, mlx);
 }
