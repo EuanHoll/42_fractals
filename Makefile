@@ -18,8 +18,14 @@ SRCF = $(SRC:%=srcs/%.c)
 OBJ = $(SRC:%=%.o)
 NAME = fractol
 MINILIBX = -I minilibxMAC -L minilibxMAC -lmlx -framework OpenGL -framework Appkit
+MINILOC = minilibxMAC
 LIBFT = -I libft/includes -L libft -lft
 FLAGS = -Wall -Werror -Wextra
+
+ifeq ($(shell uname -s ), Linux)
+MINILIBX = -pthread -I minilibxLINUX -L minilibxLINUX -lmlx -lXext -lX11 
+MINILOC = minilibxLINUX
+endif
 
 COLOURMAKE = \033[38;5;69m
 COLOURCLEAN = \033[38;5;159m
@@ -34,15 +40,15 @@ all: $(NAME)
 $(NAME): $(SRCF)
 	@echo "$(COlOURLIB)Compiling Libaries$(COLOURRESET)"
 	@make -C libft/
-	@make -C minilibxMAC/
+	@make -C $(MINILOC)/
 	@echo "$(COLOURMAKE)Compiling Program$(COLOURRESET)"
-	@clang $(FLAGS) -I minilibxMAC -I libft/includes -c $(SRCF) -g
+	@clang $(FLAGS) -I $(MINILOC) -I libft/includes -c $(SRCF) -g
 	@clang -o $(NAME) $(OBJ) $(LIBFT) $(MINILIBX) -g
 
 clean:
 	@echo "$(COLOURCLEAN)Cleaning Libaries$(COLOURRESET)"
 	@make -C libft/ clean
-	@make -C minilibxMAC/ clean
+	@make -C $(MINILOC)/ clean
 	@rm -f $(OBJ)
 
 fclean: clean
