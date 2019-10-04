@@ -1,0 +1,8 @@
+stages:
+    - run
+
+run:
+    image: ubuntu:18.04
+    stage: run
+    script:
+        - bash install.bash
