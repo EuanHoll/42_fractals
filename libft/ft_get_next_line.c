@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   get_next_line.c                                    :+:    :+:            */
+/*   ft_get_next_line.c                                 :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: ehollidg <ehollidg@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
@@ -47,11 +47,9 @@ static int		add_to_line(char *str, char **line)
 
 static t_gnl	*get_gnl(int fd, t_list *gnl)
 {
-	t_gnl	*temp_gnl;
 	t_list	*tmp;
 
 	tmp = gnl;
-	temp_gnl = (t_gnl *)gnl->content;
 	while (tmp->next && ((t_gnl*)(tmp->content))->fd != fd)
 		tmp = tmp->next;
 	return ((((t_gnl*)(tmp->content))->fd == fd) ?
